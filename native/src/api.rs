@@ -1,4 +1,4 @@
-use anyhow::Result; // i used anyhow::Result instead bec http://cjycode.com/flutter_rust_bridge/integrate/deps.html?highlight=anyhow#rust-dependencies
+use anyhow::{anyhow, Result}; // i used anyhow::Result instead bec http://cjycode.com/flutter_rust_bridge/integrate/deps.html?highlight=anyhow#rust-dependencies
 use std::sync::Arc;
 
 use litheumcommon::{
@@ -9,8 +9,6 @@ use litheumcommon::{
     timestamp_generator::{AbstractTimestampGenerator, SystemTimestampGenerator},
     wallet_database::WalletDatabase,
 };
-
-use crate::{error_types::ApiError, Err};
 
 pub fn greet() -> String {
     "Hello world from Rust!".to_string()
@@ -26,10 +24,10 @@ pub fn get_address(slice: Vec<u8>) -> Result<String> {
         if let Ok(keypair) = Keypair::from_secret_slice(&decrypted_buffer) {
             Ok(keypair.get_address())
         } else {
-            Err!(ApiError::KeypairStoreNotSet)
+            Err(anyhow!("Keypair store not set"))
         }
     } else {
-        Err!(ApiError::KeyFileDecryptionFailed)
+        Err(anyhow!("Could not decrypt keyfile"))
     }
 }
 
@@ -45,6 +43,6 @@ pub fn get_balance() -> Result<u64> {
     if let Ok(balance) = wallet_db.get_balance() {
         Ok(balance)
     } else {
-        Err!(ApiError::WalletDBNotSet)
+        Err(anyhow!("Wallet db not set"))
     }
 }
