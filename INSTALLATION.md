@@ -1,7 +1,8 @@
 # Installation Detail
-1. All of us is using Linux, therefore I will point directly to [this instakllation link](https://docs.flutter.dev/get-started/install/linux). 
-In the official docs, there are 2 choices, but i chose to install manually. 
-After installed successfully, you will need to add `flutter` to your `PATH` and activate it to use `flutter` & `dart` commands.
+1. All of us is using Linux, therefore I will point directly to [this installation link](https://docs.flutter.dev/get-started/install/linux). 
+In the official docs, there are 2 choices, but i recommended [installing manually](https://docs.flutter.dev/get-started/install/linux#install-flutter-manually) (`snapd` option is not recommended for Arch Linux, it's not stable yet).
+
+    After installed successfully, you will need to add `flutter` to your `PATH` and activate it to use `flutter` & `dart` commands.
 
 2. Run `flutter doctor` (a **super useful** command!! DONT MISS IT!)
 ```
@@ -14,6 +15,8 @@ $ flutter doctor
 Just go to our https://aur.archlinux.org/packages/android-studio, clone & make build it.
 
 - Next install [`cargo-ndk`](https://github.com/bbqsrc/cargo-ndk#installing), add rust target cross compilation.
+
+- Install NDK side-by-side with Android Studio, follow [this guide](http://cjycode.com/flutter_rust_bridge/template/setup_android.html#android_ndk).
 
 - Finally for Android setup, you will need to [put its path](http://cjycode.com/flutter_rust_bridge/template/setup_android.html#android_ndk-gradle-property) in one of the `gradle.properties`, e.g.:
 ```
@@ -28,7 +31,7 @@ You may want to update that path in `LitheumMobileWallet/android/gradle.properti
 - Install codegen & `just` cmd helper (a modern command runner alternative to `Make`), following [this guide](http://cjycode.com/flutter_rust_bridge/template/generate_install.html).
 
 
-If your setup environment is ready, go to `How-to` section in `README` to run the app.
+If your setup environment is ready, go to [`How-to`](/README.md#how-to) section in `README` to run the app.
 
 ## Project Structure
 This project should be available if you create a new Flutter project by command `flutter init`, but i made use of the template from author.
