@@ -27,6 +27,10 @@ jobs:
       - uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ secrets.SSH_PRIV_KEY }}
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run clippy code linting
         working-directory: ./native
         run: cargo clippy
@@ -42,6 +46,10 @@ jobs:
         run: rustup update
       - name: Check Rust version
         run: rustc --version
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Build
         working-directory: ./native
         run: cargo build --verbose
@@ -69,7 +77,7 @@ jobs:
       - name: Rust Cache
         uses: Swatinem/rust-cache@v1
 
-      - name: Code Coverage
+      - name: Code Coverage   # TODO: change into taiki-e/cargo-llvm-cov after having a rough version
         env:
           GITHUB_PULL_REQUEST: ${{ github.event.pull_request.number }}
         run: |
