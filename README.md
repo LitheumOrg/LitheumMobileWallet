@@ -34,6 +34,17 @@ $ flutter pub get
 $ just
 $ flutter run
 ```
+If you got some errors like below after run `just` command:
+```
+[SEVERE] : Header /tmp/.tmp7hjISB.h: Total errors/warnings: 1.
+[SEVERE] :     /tmp/.tmp7hjISB.h:1:10: fatal error: 'stdbool.h' file not found [Lexical or Preprocessor Issue]
+```
+The error maybe caused by the missing `stdbool.h` / `stdarg.h` file even though you already installed clang, cmake, ninja, etc... on your linux machine. To fix it, you will need to add the path to `stdbool.h` file to your `PATH` and activate it:
+```bash
+export CPATH="$(clang -v 2>&1 | grep "Selected GCC installation" | rev | cut -d' ' -f1 | rev)/include"
+```
+It's better if you add that line to your `~/.bashrc` / `~/.zshrc` file (or any other shell you're using) to activate it permanently.
+
 
 ## NOTES
 - don't uncomment the package dependencies on our `native/Cargo.toml`, just replace by your local project dir instead.

@@ -17,7 +17,7 @@ gen:
         --extra-c-output-path macos/Runner/ \
         --dart-decl-output lib/bridge_definitions.dart \
         --wasm
-    # cp ios/Runner/bridge_generated.h macos/Runner/bridge_generated.h
+    
     # Uncomment this line to invoke build_runner as well
     # flutter pub run build_runner build
 
