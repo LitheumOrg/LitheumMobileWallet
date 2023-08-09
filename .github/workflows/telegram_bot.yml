@@ -1,6 +1,8 @@
 name: Telegram bot message
 # triggered by github pull_request event with some types
 on: 
+  issue_comment:
+    types: [created]
   pull_request:
     types:
       - opened
@@ -11,11 +13,6 @@ on:
     types:
       - submitted
   pull_request_review_comment:
-    types:
-      - created
-      - edited
-      - deleted
-  issue_comment:
     types:
       - created
       - edited
@@ -84,11 +81,11 @@ jobs:
           TELEGRAM_REVIEW_COMMENT_DELETED: "text=comment is DELETED, \
             see ${{ github.event.pull_request.html_url}}"
       - name: PR comment
-        if: ${{ github.event.issue.pull_request && github.event.action == 'created' }}
+        if: ${{ github.event.issue.pull_request }}
         run: curl --data "${{ env.TELEGRAM_CHAT_ID }}&${{ env.TELEGRAM_PR_COMMENTED }}" "${{ env.TELE_URL }}"
         env:
-          TELEGRAM_PR_COMMENTED: "text=${{ github.event.comment.user.login }} ADDS a comment: \
-            ${{ github.event.comment.body }}, see ${{ github.event.comment.html_url}}"
+          TELEGRAM_PR_COMMENTED: "text=${{ github.actor }} ADDS a comment: \
+            ${{ github.event.comment.body }}, see ${{ github.event.issue.pull_request.html_url}}"
       - name: PR comment edited
         if: ${{ github.event.issue.pull_request && github.event.action == 'edited' }}
         run: curl --data "${{ env.TELEGRAM_CHAT_ID }}&${{ env.TELEGRAM_PR_COMMENT_EDITED }}" "${{ env.TELE_URL }}"
