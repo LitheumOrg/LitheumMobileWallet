@@ -15,6 +15,11 @@ on:
       - created
       - edited
       - deleted
+  issue_comment:
+    types:
+      - created
+      - edited
+      - deleted
 
 jobs:
   tele-bot:
@@ -77,4 +82,23 @@ jobs:
         run: curl --data "${{ env.TELEGRAM_CHAT_ID }}&${{ env.TELEGRAM_REVIEW_COMMENT_DELETED}}" "${{ env.TELE_URL }}"
         env:
           TELEGRAM_REVIEW_COMMENT_DELETED: "text=comment is DELETED, \
+            see ${{ github.event.pull_request.html_url}}"
+      - name: PR comment
+        if: ${{ github.event.issue.pull_request && github.event.action == 'created' }}
+        run: curl --data "${{ env.TELEGRAM_CHAT_ID }}&${{ env.TELEGRAM_PR_COMMENTED }}" "${{ env.TELE_URL }}"
+        env:
+          TELEGRAM_PR_COMMENTED: "text=${{ github.event.comment.user.login }} ADDS a comment: \
+            ${{ github.event.comment.body }}, see ${{ github.event.comment.html_url}}"
+      - name: PR comment edited
+        if: ${{ github.event.issue.pull_request && github.event.action == 'edited' }}
+        run: curl --data "${{ env.TELEGRAM_CHAT_ID }}&${{ env.TELEGRAM_PR_COMMENT_EDITED }}" "${{ env.TELE_URL }}"
+        env:
+          TELEGRAM_PR_COMMENT_EDITED: "text=${{ github.event.comment.user.login }}'s comment is EDITED by \
+            ${{ github.event.sender.login }}, new comment: \
+            ${{ github.event.comment.body }}, see ${{ github.event.comment.html_url}}"
+      - name: PR comment deleted
+        if: ${{ github.event.issue.pull_request && github.event.action == 'deleted' }}
+        run: curl --data "${{ env.TELEGRAM_CHAT_ID }}&${{ env.TELEGRAM_PR_COMMENT_DELETED}}" "${{ env.TELE_URL }}"
+        env:
+          TELEGRAM_PR_COMMENT_DELETED: "text=comment is DELETED, \
             see ${{ github.event.pull_request.html_url}}"
