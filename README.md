@@ -2,7 +2,7 @@
 
 This repository serves as a Mobile Wallet for Litheum Network.
 
-## Getting Started
+## Pre-requisites
 
 To begin, ensure that you have a working installation of the following items:
 - [Flutter SDK](https://docs.flutter.dev/get-started/install)
@@ -16,16 +16,12 @@ To begin, ensure that you have a working installation of the following items:
 echo "ANDROID_NDK=.." >> ~/.gradle/gradle.properties
 ```
 
-Then go ahead and run `flutter run`! When you're ready, refer to author's documentation
-[here](https://fzyzcjy.github.io/flutter_rust_bridge/index.html)
-to learn how to write and use binding code.
-
 - On our linux platform, we can make use of the Android setup to test app on Android Simulator. Following [this guide](http://cjycode.com/flutter_rust_bridge/template/setup_android.html)
 - Install codegen & `just` cmd helper (a modern command runner alternative to `Make`), following [this guide](http://cjycode.com/flutter_rust_bridge/template/generate_install.html).
 - If you want to play around with iOS/macOS setup, do [this](http://cjycode.com/flutter_rust_bridge/template/setup_ios.html) on your VM. 
+- Checking out the [INSTALLATION.md](INSTALLATION.md) for more details.
 
-
-## How-to
+## How-to run the app
 After you all set with dev environment, if anytime you made a change on rust code in `native` dir, remember to run the list of commands below so that it re-generates new build/generated bridge files for us:
 ```
 $ flutter clean
@@ -46,7 +42,7 @@ export CPATH="$(clang -v 2>&1 | grep "Selected GCC installation" | rev | cut -d'
 It's better if you add that line to your `~/.bashrc` / `~/.zshrc` file (or any other shell you're using) to activate it permanently.
 
 
-## NOTES
+## IMPORTANT NOTES
 - don't uncomment the package dependencies on our `native/Cargo.toml`, just replace by your local project dir instead.
 At the moment, our repo is still private. If we use the git repo, it will lead to some permission errors when we run `flutter run`:
 ```

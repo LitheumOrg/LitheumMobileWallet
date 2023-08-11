@@ -2,7 +2,7 @@ name: Telegram bot message
 # triggered by github pull_request event with some types
 on: 
   issue_comment:
-    types: [created]
+    types: [created, edited, deleted]
   pull_request:
     types:
       - opened
