@@ -13,6 +13,10 @@ crate-type = ["cdylib", "staticlib"]
 
 [dependencies]
 anyhow = "1"
-flutter_rust_bridge = "1.32.0"
+flutter_rust_bridge = "1.80"
+lazy_static = "1"
+tokio = { version = "1", features = ["rt", "rt-multi-thread", "sync"] }
+tracing = "^0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt", "std"], default-features = false }
 litheumcommon = { git = "ssh://git@github.com/LitheumOrg/LitheumCore.git", package = "litheumcommon" } # check section NOTES in README.md
-# litheumcommon = { path = "/home/thaodt/projects/LitheumOrg/LitheumCore/litheum-common" }
+# litheumcommon = { path = "/home/thaodt/projects/LitheumCore/litheum-common" }
