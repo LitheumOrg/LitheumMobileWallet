@@ -40,9 +40,6 @@ pub fn get_balance() -> Result<u64> {
     let keypair_store = Arc::new(KeypairStore::new(keypair));
     let wallet_db = WalletDatabase::new(constants, keypair_store, timestamp_generator.clone());
 
-    if let Ok(balance) = wallet_db.get_balance() {
-        Ok(balance)
-    } else {
-        Err(anyhow!("Wallet db not set"))
-    }
+    Ok(wallet_db.get_balance())
+    
 }
