@@ -49,9 +49,9 @@ Install 'just' (a modern command runner alternative to `Make`). e.g. on osx:
 ```
 brew install just
 ```
-Install ffigen ver 6.0.2 globally
+Install ffigen ver 5.0.1 globally
 ```
-dart pub global activate ffigen --version 6.0.2
+dart pub global activate ffigen --version 5.0.1
 ```
 
 - If you want to play around with iOS/macOS setup, do [this](http://cjycode.com/flutter_rust_bridge/template/setup_ios.html) on your VM. 
