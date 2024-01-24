@@ -67,6 +67,19 @@ $ just
 $ flutter run
 ```
 
+just may ask you to run some other things. For example:
+
+```
+[2024-01-24T10:27:45Z INFO  lib_flutter_rust_bridge_codegen] Success!
+[2024-01-24T10:27:45Z INFO  flutter_rust_bridge_codegen] Now go and use it :)
+cp ios/Runner/bridge_generated.h macos/Runner/bridge_generated.h
+# Uncomment this line to invoke build_runner as well
+# flutter pub run build_runner build
+cd native && cargo fmt
+dart format .
+```
+
+
 ## NOTES
 - don't uncomment the package dependencies on our `native/Cargo.toml`, just replace by your local project dir instead.
 At the moment, our repo is still private. If we use the git repo, it will lead to some permission errors when we run `flutter run`:

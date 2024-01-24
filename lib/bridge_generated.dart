@@ -86,7 +86,6 @@ class NativeImpl extends FlutterRustBridgeBase<NativeWire> implements Native {
   }
 
   // Section: api_fill_to_wire
-
 }
 
 // Section: wire2api
@@ -194,9 +193,9 @@ class NativeWire implements FlutterRustBridgeWireBase {
   }
 
   late final _new_uint_8_listPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<wire_uint_8_list> Function(
-              ffi.Int32)>>('new_uint_8_list');
+          ffi
+          .NativeFunction<ffi.Pointer<wire_uint_8_list> Function(ffi.Int32)>>(
+      'new_uint_8_list');
   late final _new_uint_8_list = _new_uint_8_listPtr
       .asFunction<ffi.Pointer<wire_uint_8_list> Function(int)>();
 
@@ -237,5 +236,5 @@ class wire_uint_8_list extends ffi.Struct {
 }
 
 typedef DartPostCObjectFnType = ffi.Pointer<
-    ffi.NativeFunction<ffi.Uint8 Function(DartPort, ffi.Pointer<ffi.Void>)>>;
+    ffi.NativeFunction<ffi.Bool Function(DartPort, ffi.Pointer<ffi.Void>)>>;
 typedef DartPort = ffi.Int64;
