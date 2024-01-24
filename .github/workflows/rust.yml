@@ -36,18 +36,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: subosito/flutter-action@v2
-        # with:
-        #   flutter-version: '3.7.7'
-        #   channel: 'stable'
       - uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ secrets.SSH_PRIV_KEY }}
       - name: Install Protoc
         uses: arduino/setup-protoc@v1
-      # - name: Install flutter_rust_bridge_codegen
-      #   run: cargo install --version 1.32.0 flutter_rust_bridge_codegen
       - name: install ffigen
-        run: dart pub global activate ffigen --version 6.0.2
+        run: dart pub global activate ffigen --version 5.0.1
       - name: Update Rust
         run: rustup update
       - name: Check Rust version
